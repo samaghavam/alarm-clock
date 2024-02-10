@@ -3,7 +3,7 @@ const timebox = document.querySelector('.time');
 const setAlarmBtn = document.querySelector('button');
 const content = document.querySelector('.content');
 
-let alarmTime;
+let alarmTime , alarmState = 'noset';
 const ringtone = new Audio('./audio/alarm.mp3');
 
 // adding options for hour and minutes
@@ -46,13 +46,24 @@ setAlarmBtn.addEventListener('click', ()=>{
     alarmTime = `${selectMenu[0].value} : ${selectMenu[1].value}`
     if(alarmTime.includes('Hour') || alarmTime.includes('minutes')){
         return alert('Please choose a correct time');
-    }
-
-    // changing options and set Alarm text
-    content.classList.add('disable');
-    setAlarmBtn.innerHTML = 'Clear Alarm';
-
+    } 
+    checkState(alarmState);
 })
+
+function checkState(state){
+    if(state == 'noset'){
+        // changing options and set Alarm text
+        content.classList.add('disable');
+        setAlarmBtn.innerHTML = 'Clear Alarm';
+        alarmState = 'set'
+    }else{
+        content.classList.remove('disable');
+        alarmTime = '';
+        ringtone.pause();
+        alarmState = 'noset';
+        setAlarmBtn.innerHTML = 'Set Alarm';
+    }
+}
 
 
 
