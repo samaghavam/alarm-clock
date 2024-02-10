@@ -1,5 +1,8 @@
 const selectMenu = document.querySelectorAll('select');
 const timebox = document.querySelector('.time');
+const setAlarmBtn = document.querySelector('button');
+let alarmTime;
+const ringtone = new Audio('./audio/alarm.mp3');
 
 // adding options for hour and minutes
 // for hours
@@ -28,7 +31,21 @@ setInterval(() => {
     s = s < 10 ? '0' + s : s;
 
     timebox.innerHTML = `${h} : ${m} : ${s}`;
+
+    if(alarmTime == `${h} : ${m}`){
+        ringtone.play();
+        ringtone.loop = true;
+    }
 }, 1000);
+
+
+// buttons codes for getting time and alarm
+setAlarmBtn.addEventListener('click', ()=>{
+    alarmTime = `${selectMenu[0].value} : ${selectMenu[1].value}`
+    if(alarmTime.includes('Hour') || alarmTime.includes('minutes')){
+        return alert('Please choose a correct time');
+    }
+})
 
 
 
