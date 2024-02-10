@@ -32,6 +32,10 @@ body , .container{
     padding: 15px;
     width: 90%;
 }
+.container .content.disable{
+    opacity: 0.5;
+    pointer-events: none;
+}
 .controls{
     width: 100%;
     margin: 0px 10px;

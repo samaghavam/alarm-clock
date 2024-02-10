@@ -1,6 +1,8 @@
 const selectMenu = document.querySelectorAll('select');
 const timebox = document.querySelector('.time');
 const setAlarmBtn = document.querySelector('button');
+const content = document.querySelector('.content');
+
 let alarmTime;
 const ringtone = new Audio('./audio/alarm.mp3');
 
@@ -45,6 +47,11 @@ setAlarmBtn.addEventListener('click', ()=>{
     if(alarmTime.includes('Hour') || alarmTime.includes('minutes')){
         return alert('Please choose a correct time');
     }
+
+    // changing options and set Alarm text
+    content.classList.add('disable');
+    setAlarmBtn.innerHTML = 'Clear Alarm';
+
 })
 
 
